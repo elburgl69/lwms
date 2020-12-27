@@ -11,3 +11,40 @@ Within LWMS a workflow is defined as:
 - Actions history is kept in the system by tracking the execution of each action with it result state.
 
 ## What does LWMS offer.
+LWMS offers:
+- Routes /lwms/... to query workflows statuses, workflow definition and manage the workflow.
+- A router to execute the routes above...
+- Abstract workflow controller as base for own workflow controllers...
+- Artisan commands...
+- Plugins to store Workflow definition in the file system or in a database.
+- Migrations to create the workflow related tables.
+
+## Workflow Definition.
+Workflows are described in json format. Below an example workflow definition file that contains all functionality.
+```JSON
+  "workflows" : { 
+    "workflowName1" : {
+      "fields": {
+        "status1" : {
+          "type": "string",
+          "values": ["Undefined", "Ordered", "Received", "Delayed", ],
+          "undefinedVal": "Undefined",
+        },
+        "status2" : {
+          "type": "integer",
+          "values" : [0,1,2,3,],
+          "undefinedVal": 0,
+        },
+        "externalStatus" : {
+          "type" : "model",
+          "values" : "\fully\qualified\namespaced\model:field"
+          "undefinedVal : "false",
+        },
+      },
+      
+    },
+    "workflowName2": {
+    
+    }
+  }
+```
