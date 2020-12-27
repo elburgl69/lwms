@@ -20,7 +20,7 @@ LWMS offers:
 - Migrations to create the workflow related tables.
 
 ## Workflow Definition.
-Workflows are described in json format. Below an example workflow definition file that contains all functionality.
+Workflows are described in json format. Below an example workflow definition file that contains most functionality.
 ```JSON
   "workflows" : { 
     "workflowName1" : {
@@ -38,7 +38,75 @@ Workflows are described in json format. Below an example workflow definition fil
         "externalStatus" : {
           "type" : "model",
           "values" : "\fully\qualified\namespaced\model:field"
-          "undefinedVal : "false",
+          "undefinedVal : false,
+        },
+      },
+      "actions" : {
+        "create" : {
+          "startValidation": {
+            "status1" : {
+              "values" : ["Undefined"],
+              "callable" : "",
+            },
+            "status2" : {
+              "values" : [],
+              "callable" : "\fully\qualified\namespaced\class:method",
+            },
+            "externalStatus" : {
+              "values": [false],
+              callable: "",
+            },
+          },
+          "resultValidation" : {
+            "status1" : {
+              "allowed" : true,
+              "values" : ["Undefined", "Ordered"],
+              "callable" : "",
+            },
+            "status2" : {
+              "allowed" : false,
+              "values" : [],
+              "callable" : "\fully\qualified\namespaced\class:method",
+            },
+            "externalStatus" : {
+              "allowed" : true,
+              "values": [],
+              callable: "\fully\qualified\namespaces\class:method",
+            },
+          },
+        },
+        "close" : {
+          "startValidation": {
+            "status1" : {
+              "values" : [""],
+              "callable" : "",
+            },
+            "status2" : {
+              "values" : [],
+              "callable" : "\fully\qualified\namespaced\class:method",
+            },
+            "externalStatus" : {
+              "values": [false],
+              callable: "",
+            },
+          },
+          "resultValidation" : {
+            "status1" : {
+              "allowed" : true,
+              "values" : ["Undefined", "Ordered"],
+              "callable" : "",
+            },
+            "status2" : {
+              "allowed" : false,
+              "values" : [],
+              "callable" : "\fully\qualified\namespaced\class:method",
+            },
+            "externalStatus" : {
+              "allowed" : true,
+              "values": [],
+              callable: "\fully\qualified\namespaces\class:method",
+            },
+          },
         },
       },
       
